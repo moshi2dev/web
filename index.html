@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      let themePreference = "system";
+      try {
+        themePreference = localStorage.getItem("moshi2-theme") || "system";
+      } catch {}
+      document.documentElement.dataset.siteTheme =
+        themePreference === "dark" ||
+        (themePreference !== "light" && matchMedia("(prefers-color-scheme: dark)").matches)
+          ? "dark"
+          : "light";
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#071117" />
+    <meta
+      name="description"
+      content="moshi2.devは、技術と遊びを愛するエンジニアたちのチーム。メンバーの紹介や、技術的な実験をお届けします。"
+    />
+    <meta property="og:title" content="moshi2.dev | 技術者のチーム" />
+    <meta
+      property="og:description"
+      content="moshi2.devは技術者のチームです。メンバーと技術的な実験を紹介します。"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://moshi2.dev/" />
+    <title>moshi2.dev | 技術者のチーム</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

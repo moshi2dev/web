@@ -1,0 +1,6 @@
+{
+  "$schema": "./node_modules/knip/configuration/schema.json",
+  "entry": ["index.html", "src/**/*.{test,spec}.{ts,tsx}"],
+  "project": ["src/**/*.{ts,tsx}"],
+  "ignoreExportsUsedInFile": true
+}
