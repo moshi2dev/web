@@ -96,9 +96,6 @@ button:focus-visible {
 .dashboard-header {
   border-bottom: 1px solid var(--border);
 }
-.logo span {
-  color: var(--accent-ink);
-}
 .theme-switcher {
   position: relative;
   border: 1px solid var(--border);

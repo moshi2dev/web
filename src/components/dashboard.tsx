@@ -88,7 +88,7 @@ export function Dashboard({
           letterSpacing="-.035em"
           flex="none"
         >
-          moshi2<Text as="span">.dev</Text>
+          moshi2.dev
         </Link>
         <ThemeSwitcher value={preference} onChange={onThemeChange} />
         <Link
