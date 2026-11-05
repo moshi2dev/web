@@ -1,12 +1,12 @@
 import { Box, Flex, Grid, Link, Text, Icon as YamadaIcon } from "@yamada-ui/react";
 import { LuArrowUpRight } from "react-icons/lu";
 import { SiGithub } from "react-icons/si";
-import { ThemeSwitcher } from "./theme-switcher";
-import { AboutView } from "./dashboard/about-view";
-import { MemberView } from "./dashboard/member-view";
-import { SectionNavigation } from "./dashboard/section-navigation";
+import { ThemeSwitcher } from "./themeSwitcher";
+import { AboutView } from "./dashboard/aboutView";
+import { MemberView } from "./dashboard/memberView";
+import { SectionNavigation } from "./dashboard/sectionNavigation";
 import type { DashboardProps, Section } from "./dashboard/types";
-import { WorksView } from "./dashboard/works-view";
+import { WorksView } from "./dashboard/worksView";
 
 export type { Section } from "./dashboard/types";
 

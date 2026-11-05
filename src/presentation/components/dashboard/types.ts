@@ -1,5 +1,5 @@
-import type { ThemePreference } from "../../hooks/use-theme";
-import type { Member } from "../../data/members";
+import type { ThemePreference } from "../../../application/hooks/useTheme";
+import type { Member } from "../../../domain/members";
 
 export type Section = "members" | "about" | "works";
 

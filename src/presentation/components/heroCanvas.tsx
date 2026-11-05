@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Box } from "@yamada-ui/react";
-import StarfieldWorker from "../workers/starfield.worker.ts?worker&inline";
+import StarfieldWorker from "../../infrastructure/workers/starfieldWorker.ts?worker&inline";
 
 /**
  * OffscreenCanvas + Web Worker で星空を描画する背景。

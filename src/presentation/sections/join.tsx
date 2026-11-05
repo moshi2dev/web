@@ -1,7 +1,7 @@
 import { Box, Card, Container, Heading, HStack, Tag, Text, VStack } from "@yamada-ui/react";
-import { CopyIpButton } from "../components/copy-ip-button";
-import { JOIN_STEPS, SERVER } from "../data/site";
-import { useReveal } from "../hooks/use-reveal";
+import { CopyIpButton } from "../components/copyIpButton";
+import { JOIN_STEPS, SERVER } from "../../domain/site";
+import { useReveal } from "../../application/hooks/useReveal";
 
 export function JoinGuide() {
   const { ref, visible } = useReveal<HTMLDivElement>();

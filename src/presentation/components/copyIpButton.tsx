@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Button, useClipboard } from "@yamada-ui/react";
-import { SERVER } from "../data/site";
+import { SERVER } from "../../domain/site";
 
 /**
  * サーバー IP をコピーするボタン。

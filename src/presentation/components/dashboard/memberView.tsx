@@ -12,7 +12,7 @@ import {
 } from "@yamada-ui/react";
 import { LuArrowUpRight, LuHouse, LuNotebookPen } from "react-icons/lu";
 import { SiGithub, SiX } from "react-icons/si";
-import type { Member } from "../../data/members";
+import type { Member } from "../../../domain/members";
 
 function getBlogLink(member: Member) {
   if (!member.personalSite || !member.blog) return null;

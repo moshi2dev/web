@@ -1,6 +1,6 @@
 import { Box, Card, Container, HStack, Heading, Tag, Text, VStack } from "@yamada-ui/react";
-import { NEWS } from "../data/site";
-import { useReveal } from "../hooks/use-reveal";
+import { NEWS } from "../../domain/site";
+import { useReveal } from "../../application/hooks/useReveal";
 
 const TAG_COLORS = {
   イベント: "pink",

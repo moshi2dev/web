@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Box } from "@yamada-ui/react";
-import { Scene } from "./components/scene";
-import { Dashboard } from "./components/dashboard";
-import type { Section } from "./components/dashboard";
-import { MEMBERS } from "./data/members";
-import type { ColorTheme, ThemePreference } from "./hooks/use-theme";
+import { Scene } from "./presentation/components/scene";
+import { Dashboard } from "./presentation/components/dashboard";
+import type { Section } from "./presentation/components/dashboard";
+import { MEMBERS } from "./domain/members";
+import type { ColorTheme, ThemePreference } from "./application/hooks/useTheme";
 import "./style.css";
 
 export function App({

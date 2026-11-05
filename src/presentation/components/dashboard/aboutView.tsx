@@ -1,4 +1,4 @@
-import { InfoView } from "./info-view";
+import { InfoView } from "./infoView";
 
 export function AboutView() {
   return (

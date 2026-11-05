@@ -1,6 +1,6 @@
 import { LuMonitor, LuMoon, LuSun } from "react-icons/lu";
 import { Box, Icon as YamadaIcon, VisuallyHidden } from "@yamada-ui/react";
-import type { ThemePreference } from "../hooks/use-theme";
+import type { ThemePreference } from "../../application/hooks/useTheme";
 
 const options = [
   { value: "light", label: "ライト", Icon: LuSun },

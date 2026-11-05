@@ -10,8 +10,8 @@ import {
   Card,
   VStack,
 } from "@yamada-ui/react";
-import { FAQ } from "../data/site";
-import { useReveal } from "../hooks/use-reveal";
+import { FAQ } from "../../domain/site";
+import { useReveal } from "../../application/hooks/useReveal";
 
 export function Faq() {
   const { ref, visible } = useReveal<HTMLDivElement>();

@@ -1,8 +1,8 @@
 import { useEffect, useRef, type ReactNode } from "react";
 import { Box } from "@yamada-ui/react";
-import { usePointerMotion } from "../hooks/use-pointer-motion";
-import SceneWorker from "../workers/scene.worker.ts?worker";
-import type { ColorTheme } from "../hooks/use-theme";
+import { usePointerMotion } from "../../application/hooks/usePointerMotion";
+import SceneWorker from "../../infrastructure/workers/sceneWorker.ts?worker";
+import type { ColorTheme } from "../../application/hooks/useTheme";
 
 export function Scene({ children, theme }: { children: ReactNode; theme: ColorTheme }) {
   const sceneRef = useRef<HTMLDivElement>(null);

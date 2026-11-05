@@ -1,6 +1,6 @@
 import { Box, Card, Container, Grid, Heading, HStack, Tag, Text, VStack } from "@yamada-ui/react";
-import { FEATURES, type Feature } from "../data/site";
-import { useReveal } from "../hooks/use-reveal";
+import { FEATURES, type Feature } from "../../domain/site";
+import { useReveal } from "../../application/hooks/useReveal";
 
 function FeatureCard({ feature }: { feature: Feature }) {
   return (

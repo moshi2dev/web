@@ -8,7 +8,7 @@ import {
   VStack,
 } from "@yamada-ui/react";
 import { LuLayers, LuShapes, LuUsers } from "react-icons/lu";
-import { MEMBERS } from "../../data/members";
+import { MEMBERS } from "../../../domain/members";
 import type { Section } from "./types";
 
 export function SectionNavigation({

@@ -9,9 +9,9 @@ import {
   Text,
   VStack,
 } from "@yamada-ui/react";
-import { HeroCanvas } from "../components/hero-canvas";
-import { CopyIpButton } from "../components/copy-ip-button";
-import { SERVER } from "../data/site";
+import { HeroCanvas } from "../components/heroCanvas";
+import { CopyIpButton } from "../components/copyIpButton";
+import { SERVER } from "../../domain/site";
 
 function scrollToJoin() {
   document.querySelector("#join")?.scrollIntoView({ behavior: "smooth", block: "start" });

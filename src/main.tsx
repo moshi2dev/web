@@ -2,7 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { UIProvider } from "@yamada-ui/react";
 import { App } from "./app";
-import { useTheme } from "./hooks/use-theme";
+import { useTheme } from "./application/hooks/useTheme";
 
 const container = document.querySelector("#root");
 
