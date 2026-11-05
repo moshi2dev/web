@@ -13,7 +13,14 @@ import {
   VisuallyHidden,
   VStack,
 } from "@yamada-ui/react";
-import { LuArrowUpRight, LuHouse, LuLayers, LuShapes, LuUsers } from "react-icons/lu";
+import {
+  LuArrowUpRight,
+  LuHouse,
+  LuLayers,
+  LuNotebookPen,
+  LuShapes,
+  LuUsers,
+} from "react-icons/lu";
 import { SiGithub, SiX } from "react-icons/si";
 import { MEMBERS, type Member } from "../data/members";
 import type { ThemePreference } from "../hooks/use-theme";
@@ -68,6 +75,26 @@ export function Dashboard({
           flex="none"
         >
           moshi2<Text as="span">.dev</Text>
+        </Link>
+        <Link
+          className="github-link blog-link"
+          href="https://blog.moshi2.dev"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="ブログ（新しいタブ）"
+          data-magnetic
+          display="inline-flex"
+          alignItems="center"
+          gap="8px"
+          px="12px"
+          py="10px"
+          fontSize="13px"
+        >
+          <YamadaIcon as={LuNotebookPen} aria-hidden="true" boxSize="17px" />
+          <Text as="span" m="0" fontSize="13px">
+            ブログ
+          </Text>
+          <YamadaIcon as={LuArrowUpRight} aria-hidden="true" boxSize="13px" />
         </Link>
         <ThemeSwitcher value={preference} onChange={onThemeChange} />
         <Link
