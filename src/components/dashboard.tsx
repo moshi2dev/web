@@ -19,7 +19,7 @@ import { MEMBERS, type Member } from "../data/members";
 import type { ThemePreference } from "../hooks/use-theme";
 import { ThemeSwitcher } from "./theme-switcher";
 
-type Section = "members" | "about" | "experiments";
+type Section = "members" | "about" | "works";
 
 type Props = {
   member: Member;
@@ -121,6 +121,31 @@ export function Dashboard({
               <Button
                 className="nav-item"
                 variant="ghost"
+                aria-pressed={section === "about"}
+                title="トップ"
+                onClick={() => onSectionChange("about")}
+                data-magnetic
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+                w="100%"
+                minW="0"
+                h="51px"
+                p="0"
+                borderRadius="0"
+                bg="transparent"
+                color="var(--text)"
+                fontSize="13px"
+                fontWeight="700"
+              >
+                <YamadaIcon as={LuLayers} aria-hidden="true" boxSize="18px" />
+                <VisuallyHidden as="span">トップ</VisuallyHidden>
+              </Button>
+            </List.Item>
+            <List.Item as="li">
+              <Button
+                className="nav-item"
+                variant="ghost"
                 aria-pressed={section === "members"}
                 title="メンバー"
                 onClick={() => onSectionChange("members")}
@@ -193,34 +218,9 @@ export function Dashboard({
               <Button
                 className="nav-item"
                 variant="ghost"
-                aria-pressed={section === "about"}
-                title="チーム"
-                onClick={() => onSectionChange("about")}
-                data-magnetic
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-                w="100%"
-                minW="0"
-                h="51px"
-                p="0"
-                borderRadius="0"
-                bg="transparent"
-                color="var(--text)"
-                fontSize="13px"
-                fontWeight="700"
-              >
-                <YamadaIcon as={LuLayers} aria-hidden="true" boxSize="18px" />
-                <VisuallyHidden as="span">チーム</VisuallyHidden>
-              </Button>
-            </List.Item>
-            <List.Item as="li">
-              <Button
-                className="nav-item"
-                variant="ghost"
-                aria-pressed={section === "experiments"}
-                title="実験"
-                onClick={() => onSectionChange("experiments")}
+                aria-pressed={section === "works"}
+                title="ワークス"
+                onClick={() => onSectionChange("works")}
                 data-magnetic
                 display="flex"
                 alignItems="center"
@@ -236,7 +236,7 @@ export function Dashboard({
                 fontWeight="700"
               >
                 <YamadaIcon as={LuFlaskConical} aria-hidden="true" boxSize="18px" />
-                <VisuallyHidden as="span">実験</VisuallyHidden>
+                <VisuallyHidden as="span">ワークス</VisuallyHidden>
               </Button>
             </List.Item>
           </List.Root>
@@ -387,7 +387,7 @@ export function Dashboard({
               </List.Root>
             </VStack>
           </Grid>
-        ) : (
+        ) : section === "about" ? (
           <VStack
             as="article"
             className="info-view"
@@ -399,67 +399,68 @@ export function Dashboard({
             px={{ base: "clamp(30px, 8vw, 120px)", md: "22px" }}
             py={{ base: "80px", md: "55px" }}
           >
-            {section === "about" ? (
-              <>
-                <Heading
-                  as="h1"
-                  m="0"
-                  fontFamily="Barlow Condensed, Noto Sans JP, sans-serif"
-                  fontSize={{ base: "clamp(48px, 5.6vw, 82px)", md: "clamp(42px, 10vw, 64px)" }}
-                  fontWeight="800"
-                >
-                  moshi2.dev
-                </Heading>
-                <Text
-                  my={{ base: "28px", md: "22px" }}
-                  fontSize={{ base: "15px", md: "14px" }}
-                  lineHeight="2"
-                >
-                  moshi2.devは、ものづくりが好きな技術者のチームです。メンバーそれぞれの興味や技術を持ち寄り、さまざまなことに取り組みます。
-                </Text>
-              </>
-            ) : (
-              <>
-                <Heading
-                  as="h1"
-                  m="0"
-                  fontFamily="Barlow Condensed, Noto Sans JP, sans-serif"
-                  fontSize={{ base: "clamp(48px, 5.6vw, 82px)", md: "clamp(42px, 10vw, 64px)" }}
-                  fontWeight="800"
-                >
-                  実験
-                </Heading>
-                <Text
-                  my={{ base: "28px", md: "22px" }}
-                  fontSize={{ base: "15px", md: "14px" }}
-                  lineHeight="2"
-                >
-                  技術を使った実験や制作を、このサイトで紹介していく予定です。
-                </Text>
-                <Link
-                  className="info-button"
-                  href="https://github.com/moshi2dev"
-                  target="_blank"
-                  rel="noreferrer"
-                  data-magnetic
-                  display="inline-flex"
-                  alignItems="center"
-                  justifyContent="space-between"
-                  mt="30px"
-                  px="17px"
-                  py="13px"
-                  bg="var(--accent)"
-                  color="var(--accent-text)"
-                  fontSize="13px"
-                  fontWeight="700"
-                >
-                  <HStack as="span" gap="28px">
-                    <YamadaIcon as={SiGithub} aria-hidden="true" boxSize="16px" /> GitHubを見る{" "}
-                    <YamadaIcon as={LuArrowUpRight} aria-hidden="true" boxSize="16px" />
-                  </HStack>
-                </Link>
-              </>
-            )}
+            <Heading
+              as="h1"
+              m="0"
+              fontFamily="Barlow Condensed, Noto Sans JP, sans-serif"
+              fontSize={{ base: "clamp(48px, 5.6vw, 82px)", md: "clamp(42px, 10vw, 64px)" }}
+              fontWeight="800"
+            >
+              moshi2.dev
+            </Heading>
+            <Text
+              my={{ base: "28px", md: "22px" }}
+              fontSize={{ base: "15px", md: "14px" }}
+              lineHeight="2"
+            >
+              moshi2.devは、ものづくりが好きな技術者のチームです。メンバーそれぞれの興味や技術を持ち寄り、さまざまなことに取り組みます。
+            </Text>
+          </VStack>
+        ) : (
+          <VStack
+            as="article"
+            className="info-view works-view"
+            key={section}
+            align="flex-start"
+            justify="center"
+            gap="0"
+            maxW="720px"
+            alignSelf={{ base: "center", md: "flex-start" }}
+            px={{ base: "clamp(30px, 8vw, 120px)", md: "22px" }}
+            py={{ base: "80px", md: "55px" }}
+          >
+            <Text
+              className="works-kicker"
+              fontFamily="Barlow Condensed, sans-serif"
+              fontSize="18px"
+              fontWeight="700"
+              letterSpacing=".16em"
+            >
+              WORKS / WIP
+            </Text>
+            <Heading
+              as="h1"
+              m="12px 0 0"
+              fontFamily="Barlow Condensed, Noto Sans JP, sans-serif"
+              fontSize={{ base: "clamp(72px, 14vw, 150px)", md: "clamp(64px, 10vw, 112px)" }}
+              fontWeight="800"
+              lineHeight=".9"
+              letterSpacing="-.04em"
+            >
+              WIP
+            </Heading>
+            <Text
+              className="works-status"
+              mt="28px"
+              fontSize={{ base: "18px", md: "20px" }}
+              fontWeight="700"
+              letterSpacing=".1em"
+            >
+              セイサクチュウ
+            </Text>
+            <Text mt="12px" fontSize={{ base: "15px", md: "14px" }} lineHeight="2">
+              作品紹介は誠意開発中です。
+            </Text>
           </VStack>
         )}
       </Grid>

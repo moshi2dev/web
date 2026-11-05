@@ -16,7 +16,7 @@ export function App({
   onThemeChange: (value: ThemePreference) => void;
 }) {
   const [memberIndex, setMemberIndex] = useState(0);
-  const [section, setSection] = useState<"members" | "about" | "experiments">("members");
+  const [section, setSection] = useState<"members" | "about" | "works">("members");
 
   return (
     <Box as="main" className="app" minH="100svh">
