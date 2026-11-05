@@ -13,7 +13,7 @@ import {
   VisuallyHidden,
   VStack,
 } from "@yamada-ui/react";
-import { LuArrowUpRight, LuFlaskConical, LuHouse, LuLayers, LuUsers } from "react-icons/lu";
+import { LuArrowUpRight, LuGalleryHorizontalEnd, LuHouse, LuLayers, LuUsers } from "react-icons/lu";
 import { SiGithub, SiX } from "react-icons/si";
 import { MEMBERS, type Member } from "../data/members";
 import type { ThemePreference } from "../hooks/use-theme";
@@ -235,7 +235,7 @@ export function Dashboard({
                 fontSize="13px"
                 fontWeight="700"
               >
-                <YamadaIcon as={LuFlaskConical} aria-hidden="true" boxSize="18px" />
+                <YamadaIcon as={LuGalleryHorizontalEnd} aria-hidden="true" boxSize="18px" />
                 <VisuallyHidden as="span">ワークス</VisuallyHidden>
               </Button>
             </List.Item>
@@ -419,47 +419,30 @@ export function Dashboard({
         ) : (
           <VStack
             as="article"
-            className="info-view works-view"
+            className="info-view"
             key={section}
             align="flex-start"
-            justify="center"
             gap="0"
             maxW="720px"
             alignSelf={{ base: "center", md: "flex-start" }}
             px={{ base: "clamp(30px, 8vw, 120px)", md: "22px" }}
             py={{ base: "80px", md: "55px" }}
           >
-            <Text
-              className="works-kicker"
-              fontFamily="Barlow Condensed, sans-serif"
-              fontSize="18px"
-              fontWeight="700"
-              letterSpacing=".16em"
-            >
-              WORKS / WIP
-            </Text>
             <Heading
               as="h1"
-              m="12px 0 0"
+              m="0"
               fontFamily="Barlow Condensed, Noto Sans JP, sans-serif"
-              fontSize={{ base: "clamp(72px, 14vw, 150px)", md: "clamp(64px, 10vw, 112px)" }}
+              fontSize={{ base: "clamp(48px, 5.6vw, 82px)", md: "clamp(42px, 10vw, 64px)" }}
               fontWeight="800"
-              lineHeight=".9"
-              letterSpacing="-.04em"
             >
               WIP
             </Heading>
             <Text
-              className="works-status"
-              mt="28px"
-              fontSize={{ base: "18px", md: "20px" }}
-              fontWeight="700"
-              letterSpacing=".1em"
+              my={{ base: "28px", md: "22px" }}
+              fontSize={{ base: "15px", md: "14px" }}
+              lineHeight="2"
             >
-              セイサクチュウ
-            </Text>
-            <Text mt="12px" fontSize={{ base: "15px", md: "14px" }} lineHeight="2">
-              作品紹介は誠意開発中です。
+              セイサクチュウ。作品紹介は誠意開発中です。
             </Text>
           </VStack>
         )}
