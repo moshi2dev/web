@@ -13,7 +13,7 @@ import {
   VisuallyHidden,
   VStack,
 } from "@yamada-ui/react";
-import { LuArrowUpRight, LuFolderKanban, LuHouse, LuLayers, LuUsers } from "react-icons/lu";
+import { LuArrowUpRight, LuBoxes, LuHouse, LuLayers, LuUsers } from "react-icons/lu";
 import { SiGithub, SiX } from "react-icons/si";
 import { MEMBERS, type Member } from "../data/members";
 import type { ThemePreference } from "../hooks/use-theme";
@@ -235,7 +235,7 @@ export function Dashboard({
                 fontSize="13px"
                 fontWeight="700"
               >
-                <YamadaIcon as={LuFolderKanban} aria-hidden="true" boxSize="18px" />
+                <YamadaIcon as={LuBoxes} aria-hidden="true" boxSize="18px" />
                 <VisuallyHidden as="span">ワークス</VisuallyHidden>
               </Button>
             </List.Item>
