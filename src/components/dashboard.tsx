@@ -38,6 +38,18 @@ type Props = {
   onSectionChange: (section: Section) => void;
 };
 
+function getBlogLink(member: Member) {
+  if (!member.personalSite || !member.blog) return null;
+
+  const { domain } = member.personalSite;
+  const path = member.blog.path ?? "";
+
+  return {
+    href: path ? `https://${domain}${path}` : `https://blog.${domain}`,
+    label: path ? `${domain}${path}` : `blog.${domain}`,
+  };
+}
+
 export function Dashboard({
   member,
   memberIndex,
@@ -47,6 +59,8 @@ export function Dashboard({
   onMemberChange,
   onSectionChange,
 }: Props) {
+  const blogLink = getBlogLink(member);
+
   return (
     <Flex
       className="dashboard"
@@ -318,13 +332,13 @@ export function Dashboard({
                     <YamadaIcon as={LuArrowUpRight} aria-hidden="true" boxSize="13px" />
                   </Link>
                 )}
-                {member.personalSite && (
+                {blogLink && (
                   <Link
                     className="detail-handle"
-                    href={member.blogHref ?? `https://blog.${member.personalSite.domain}`}
+                    href={blogLink.href}
                     target="_blank"
                     rel="noreferrer"
-                    aria-label={`ブログ blog.${member.personalSite.domain}`}
+                    aria-label={`ブログ ${blogLink.label}`}
                     display="inline-flex"
                     alignItems="center"
                     gap="7px"
@@ -333,7 +347,7 @@ export function Dashboard({
                   >
                     <YamadaIcon as={LuNotebookPen} aria-hidden="true" boxSize="14px" />
                     <Text as="span" m="0" fontSize="13px">
-                      blog.{member.personalSite.domain}
+                      {blogLink.label}
                     </Text>
                     <YamadaIcon as={LuArrowUpRight} aria-hidden="true" boxSize="13px" />
                   </Link>
