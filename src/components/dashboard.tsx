@@ -13,7 +13,7 @@ import {
   VisuallyHidden,
   VStack,
 } from "@yamada-ui/react";
-import { LuArrowUpRight, LuGalleryHorizontalEnd, LuHouse, LuLayers, LuUsers } from "react-icons/lu";
+import { LuArrowUpRight, LuHouse, LuImages, LuLayers, LuUsers } from "react-icons/lu";
 import { SiGithub, SiX } from "react-icons/si";
 import { MEMBERS, type Member } from "../data/members";
 import type { ThemePreference } from "../hooks/use-theme";
@@ -235,7 +235,7 @@ export function Dashboard({
                 fontSize="13px"
                 fontWeight="700"
               >
-                <YamadaIcon as={LuGalleryHorizontalEnd} aria-hidden="true" boxSize="18px" />
+                <YamadaIcon as={LuImages} aria-hidden="true" boxSize="18px" />
                 <VisuallyHidden as="span">ワークス</VisuallyHidden>
               </Button>
             </List.Item>
@@ -442,7 +442,7 @@ export function Dashboard({
               fontSize={{ base: "15px", md: "14px" }}
               lineHeight="2"
             >
-              セイサクチュウ。作品紹介は誠意開発中です。
+              作品紹介タブは誠意開発中です。
             </Text>
           </VStack>
         )}
