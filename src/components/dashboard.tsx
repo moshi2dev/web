@@ -321,7 +321,7 @@ export function Dashboard({
                 {member.personalSite && (
                   <Link
                     className="detail-handle"
-                    href={`https://blog.${member.personalSite.domain}`}
+                    href={member.blogHref ?? `https://blog.${member.personalSite.domain}`}
                     target="_blank"
                     rel="noreferrer"
                     aria-label={`ブログ blog.${member.personalSite.domain}`}

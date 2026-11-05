@@ -5,6 +5,7 @@ export type Member = {
   interests: readonly string[];
   avatar: string;
   personalSite?: { href: string; domain: string };
+  blogHref?: string;
 };
 
 export const MEMBERS: readonly Member[] = [
@@ -15,6 +16,7 @@ export const MEMBERS: readonly Member[] = [
     interests: ["Web", "形式検証", "TypeScript"],
     avatar: "/members/mimifuwacc.png",
     personalSite: { href: "https://mimifuwa.cc", domain: "mimifuwa.cc" },
+    blogHref: "https://mimifuwa.cc/blogs",
   },
   {
     name: "あかあく",
