@@ -76,26 +76,6 @@ export function Dashboard({
         >
           moshi2<Text as="span">.dev</Text>
         </Link>
-        <Link
-          className="github-link blog-link"
-          href="https://blog.moshi2.dev"
-          target="_blank"
-          rel="noreferrer"
-          aria-label="ブログ（新しいタブ）"
-          data-magnetic
-          display="inline-flex"
-          alignItems="center"
-          gap="8px"
-          px="12px"
-          py="10px"
-          fontSize="13px"
-        >
-          <YamadaIcon as={LuNotebookPen} aria-hidden="true" boxSize="17px" />
-          <Text as="span" m="0" fontSize="13px">
-            ブログ
-          </Text>
-          <YamadaIcon as={LuArrowUpRight} aria-hidden="true" boxSize="13px" />
-        </Link>
         <ThemeSwitcher value={preference} onChange={onThemeChange} />
         <Link
           className="github-link"
@@ -334,6 +314,26 @@ export function Dashboard({
                     <YamadaIcon as={LuHouse} aria-hidden="true" boxSize="14px" />
                     <Text as="span" m="0" fontSize="13px">
                       {member.personalSite.domain}
+                    </Text>
+                    <YamadaIcon as={LuArrowUpRight} aria-hidden="true" boxSize="13px" />
+                  </Link>
+                )}
+                {member.personalSite && (
+                  <Link
+                    className="detail-handle"
+                    href={`https://blog.${member.personalSite.domain}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`ブログ blog.${member.personalSite.domain}`}
+                    display="inline-flex"
+                    alignItems="center"
+                    gap="7px"
+                    color="var(--text)"
+                    fontSize="13px"
+                  >
+                    <YamadaIcon as={LuNotebookPen} aria-hidden="true" boxSize="14px" />
+                    <Text as="span" m="0" fontSize="13px">
+                      blog.{member.personalSite.domain}
                     </Text>
                     <YamadaIcon as={LuArrowUpRight} aria-hidden="true" boxSize="13px" />
                   </Link>

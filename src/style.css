@@ -236,8 +236,7 @@ button:focus-visible {
   }
 }
 @media (max-width: 720px) {
-  .github-link span,
-  .blog-link span {
+  .github-link span {
     display: none;
   }
   .github-link {
