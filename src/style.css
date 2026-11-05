@@ -191,7 +191,6 @@ button:focus-visible {
 .detail-handle:hover {
   text-decoration: underline;
 }
-.profile-link:hover,
 .info-button:hover {
   background: #f8ff9b !important;
 }

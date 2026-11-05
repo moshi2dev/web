@@ -13,7 +13,7 @@ import {
   VisuallyHidden,
   VStack,
 } from "@yamada-ui/react";
-import { LuArrowUpRight, LuFlaskConical, LuLayers, LuUsers } from "react-icons/lu";
+import { LuArrowUpRight, LuFlaskConical, LuHouse, LuLayers, LuUsers } from "react-icons/lu";
 import { SiGithub, SiX } from "react-icons/si";
 import { MEMBERS, type Member } from "../data/members";
 import type { ThemePreference } from "../hooks/use-theme";
@@ -291,6 +291,26 @@ export function Dashboard({
                 {member.name}
               </Heading>
               <HStack className="member-social-links" gap="16px" mt="13px" flexWrap="wrap">
+                {member.personalSite && (
+                  <Link
+                    className="detail-handle"
+                    href={member.personalSite.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`個人サイト ${member.personalSite.domain}`}
+                    display="inline-flex"
+                    alignItems="center"
+                    gap="7px"
+                    color="var(--text)"
+                    fontSize="13px"
+                  >
+                    <YamadaIcon as={LuHouse} aria-hidden="true" boxSize="14px" />
+                    <Text as="span" m="0" fontSize="13px">
+                      {member.personalSite.domain}
+                    </Text>
+                    <YamadaIcon as={LuArrowUpRight} aria-hidden="true" boxSize="13px" />
+                  </Link>
+                )}
                 <Link
                   className="detail-handle"
                   href={`https://x.com/${member.handle}`}
@@ -365,29 +385,6 @@ export function Dashboard({
                   </List.Item>
                 ))}
               </List.Root>
-              <Link
-                className="profile-link"
-                href={member.website}
-                target="_blank"
-                rel="noreferrer"
-                data-magnetic
-                display="inline-flex"
-                alignItems="center"
-                justifyContent="space-between"
-                mt="30px"
-                px="17px"
-                py="13px"
-                bg="var(--accent)"
-                color="var(--accent-text)"
-                fontSize="13px"
-                fontWeight="700"
-                textShadow="none"
-              >
-                <HStack as="span" gap="28px">
-                  プロフィールを見る{" "}
-                  <YamadaIcon as={LuArrowUpRight} aria-hidden="true" boxSize="16px" />
-                </HStack>
-              </Link>
             </VStack>
           </Grid>
         ) : (
