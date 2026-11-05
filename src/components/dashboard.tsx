@@ -1,54 +1,14 @@
-import {
-  Box,
-  Button,
-  Flex,
-  Grid,
-  Heading,
-  HStack,
-  Image,
-  Icon as YamadaIcon,
-  Link,
-  List,
-  Text,
-  VisuallyHidden,
-  VStack,
-} from "@yamada-ui/react";
-import {
-  LuArrowUpRight,
-  LuHouse,
-  LuLayers,
-  LuNotebookPen,
-  LuShapes,
-  LuUsers,
-} from "react-icons/lu";
-import { SiGithub, SiX } from "react-icons/si";
-import { MEMBERS, type Member } from "../data/members";
-import type { ThemePreference } from "../hooks/use-theme";
+import { Box, Flex, Grid, Link, Text, Icon as YamadaIcon } from "@yamada-ui/react";
+import { LuArrowUpRight } from "react-icons/lu";
+import { SiGithub } from "react-icons/si";
 import { ThemeSwitcher } from "./theme-switcher";
+import { AboutView } from "./dashboard/about-view";
+import { MemberView } from "./dashboard/member-view";
+import { SectionNavigation } from "./dashboard/section-navigation";
+import type { DashboardProps, Section } from "./dashboard/types";
+import { WorksView } from "./dashboard/works-view";
 
-type Section = "members" | "about" | "works";
-
-type Props = {
-  member: Member;
-  memberIndex: number;
-  section: Section;
-  preference: ThemePreference;
-  onThemeChange: (value: ThemePreference) => void;
-  onMemberChange: (index: number) => void;
-  onSectionChange: (section: Section) => void;
-};
-
-function getBlogLink(member: Member) {
-  if (!member.personalSite || !member.blog) return null;
-
-  const { domain } = member.personalSite;
-  const path = member.blog.path ?? "";
-
-  return {
-    href: path ? `https://${domain}${path}` : `https://blog.${domain}`,
-    label: path ? `${domain}${path}` : `blog.${domain}`,
-  };
-}
+export type { Section } from "./dashboard/types";
 
 export function Dashboard({
   member,
@@ -58,9 +18,7 @@ export function Dashboard({
   onThemeChange,
   onMemberChange,
   onSectionChange,
-}: Props) {
-  const blogLink = getBlogLink(member);
-
+}: DashboardProps) {
   return (
     <Flex
       className="dashboard"
@@ -112,7 +70,6 @@ export function Dashboard({
           <YamadaIcon as={LuArrowUpRight} aria-hidden="true" boxSize="13px" />
         </Link>
       </Flex>
-
       <Grid
         as="main"
         className="dashboard-main"
@@ -120,373 +77,13 @@ export function Dashboard({
         templateColumns={{ base: "76px minmax(0, 1fr)", sm: "64px minmax(0, 1fr)" }}
         alignItems="stretch"
       >
-        <Box
-          as="nav"
-          className="section-nav"
-          aria-label="メインナビゲーション"
-          alignSelf="stretch"
-          m="0"
-          p="10px 0"
-          bg="var(--sidebar-panel)"
-        >
-          <List.Root
-            as="ul"
-            className="nav-list"
-            styleType="none"
-            display="flex"
-            direction="column"
-            m="0"
-            p="0"
-          >
-            <List.Item as="li">
-              <Button
-                className="nav-item"
-                variant="ghost"
-                aria-pressed={section === "about"}
-                title="トップ"
-                onClick={() => onSectionChange("about")}
-                data-magnetic
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-                w="100%"
-                minW="0"
-                h="51px"
-                p="0"
-                borderRadius="0"
-                bg="transparent"
-                color="var(--text)"
-                fontSize="13px"
-                fontWeight="700"
-              >
-                <YamadaIcon as={LuLayers} aria-hidden="true" boxSize="18px" />
-                <VisuallyHidden as="span">トップ</VisuallyHidden>
-              </Button>
-            </List.Item>
-            <List.Item as="li">
-              <Button
-                className="nav-item"
-                variant="ghost"
-                aria-pressed={section === "members"}
-                title="メンバー"
-                onClick={() => onSectionChange("members")}
-                data-magnetic
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-                w="100%"
-                minW="0"
-                h="51px"
-                p="0"
-                borderRadius="0"
-                bg="transparent"
-                color="var(--text)"
-                fontSize="13px"
-                fontWeight="700"
-              >
-                <YamadaIcon as={LuUsers} aria-hidden="true" boxSize="18px" />{" "}
-                <VisuallyHidden as="span">メンバー</VisuallyHidden>
-              </Button>
-              <VStack
-                as="ul"
-                className="member-rail"
-                id="member-list"
-                aria-label="メンバー"
-                align="center"
-                gap={{ base: "5px", md: "6px" }}
-                p={{ base: "7px 5px", md: "8px 5px" }}
-                m="0"
-                listStyleType="none"
-                bg="var(--rail-inset)"
-                boxShadow="inset 7px 0 12px var(--rail-shadow), inset 0 5px 10px var(--rail-shadow), inset -1px 0 var(--rail-edge)"
-              >
-                {MEMBERS.map((item, index) => (
-                  <List.Item as="li" key={item.handle}>
-                    <Button
-                      className="member-button"
-                      variant="ghost"
-                      aria-label={item.name}
-                      title={item.name}
-                      aria-pressed={memberIndex === index && section === "members"}
-                      onClick={() => onMemberChange(index)}
-                      data-magnetic
-                      display="flex"
-                      justifyContent="center"
-                      w="48px"
-                      h="48px"
-                      minW="0"
-                      p="4px"
-                      border="1px solid transparent"
-                      borderRadius="full"
-                      bg="transparent"
-                      color="var(--text)"
-                    >
-                      <Image
-                        src={item.avatar}
-                        alt=""
-                        fit="cover"
-                        w="34px"
-                        h="34px"
-                        borderRadius="full"
-                        filter="grayscale(.5)"
-                      />
-                    </Button>
-                  </List.Item>
-                ))}
-              </VStack>
-            </List.Item>
-            <List.Item as="li">
-              <Button
-                className="nav-item"
-                variant="ghost"
-                aria-pressed={section === "works"}
-                title="ワークス"
-                onClick={() => onSectionChange("works")}
-                data-magnetic
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-                w="100%"
-                minW="0"
-                h="51px"
-                p="0"
-                borderRadius="0"
-                bg="transparent"
-                color="var(--text)"
-                fontSize="13px"
-                fontWeight="700"
-              >
-                <YamadaIcon as={LuShapes} aria-hidden="true" boxSize="18px" />
-                <VisuallyHidden as="span">ワークス</VisuallyHidden>
-              </Button>
-            </List.Item>
-          </List.Root>
-        </Box>
-        {section === "members" ? (
-          <Grid
-            as="article"
-            className="member-view"
-            key={member.handle}
-            templateColumns={{
-              base: "minmax(260px, 1fr) minmax(300px, .95fr)",
-              lg: "minmax(200px, 1fr) minmax(250px, 1fr)",
-              md: "1fr",
-            }}
-            alignItems="center"
-            columnGap={{ base: "clamp(25px, 4vw, 65px)", lg: "22px" }}
-            rowGap={{ base: "20px", md: "22px" }}
-            p={{
-              base: "35px clamp(30px, 5vw, 80px) 65px 35px",
-              lg: "25px 28px 45px 15px",
-              md: "22px 22px 50px",
-            }}
-          >
-            <Grid
-              className="portrait-stage"
-              aria-hidden="true"
-              placeItems="center"
-              p={{ base: "45px 22px", lg: "25px 15px", md: "18px 12px" }}
-              overflow="hidden"
-              isolation="isolate"
-            >
-              <Box
-                className="portrait-frame"
-                position="relative"
-                w={{ base: "min(100%, 430px)", md: "min(100%, 300px)" }}
-                aspectRatio="1"
-              >
-                <Image src={member.avatar} alt="" fit="cover" w="100%" h="100%" />
-              </Box>
-            </Grid>
-            <VStack className="member-detail" align="flex-start" gap="0" maxW="540px">
-              <Heading
-                as="h1"
-                m="0"
-                fontFamily="Barlow Condensed, Noto Sans JP, sans-serif"
-                fontSize={{ base: "clamp(48px, 5.6vw, 82px)", md: "clamp(42px, 10vw, 64px)" }}
-                fontWeight="800"
-                lineHeight="1.1"
-                letterSpacing="-.025em"
-                overflowWrap="anywhere"
-              >
-                {member.name}
-              </Heading>
-              <HStack className="member-social-links" gap="16px" mt="13px" flexWrap="wrap">
-                {member.personalSite && (
-                  <Link
-                    className="detail-handle"
-                    href={member.personalSite.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label={`個人サイト ${member.personalSite.domain}`}
-                    display="inline-flex"
-                    alignItems="center"
-                    gap="7px"
-                    color="var(--text)"
-                    fontSize="13px"
-                  >
-                    <YamadaIcon as={LuHouse} aria-hidden="true" boxSize="14px" />
-                    <Text as="span" m="0" fontSize="13px">
-                      {member.personalSite.domain}
-                    </Text>
-                    <YamadaIcon as={LuArrowUpRight} aria-hidden="true" boxSize="13px" />
-                  </Link>
-                )}
-                {blogLink && (
-                  <Link
-                    className="detail-handle"
-                    href={blogLink.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label={`ブログ ${blogLink.label}`}
-                    display="inline-flex"
-                    alignItems="center"
-                    gap="7px"
-                    color="var(--text)"
-                    fontSize="13px"
-                  >
-                    <YamadaIcon as={LuNotebookPen} aria-hidden="true" boxSize="14px" />
-                    <Text as="span" m="0" fontSize="13px">
-                      {blogLink.label}
-                    </Text>
-                    <YamadaIcon as={LuArrowUpRight} aria-hidden="true" boxSize="13px" />
-                  </Link>
-                )}
-                <Link
-                  className="detail-handle"
-                  href={`https://x.com/${member.handle}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={`X @${member.handle}`}
-                  display="inline-flex"
-                  alignItems="center"
-                  gap="7px"
-                  color="var(--text)"
-                  fontSize="13px"
-                >
-                  <YamadaIcon as={SiX} aria-hidden="true" boxSize="13px" />
-                  <Text as="span" m="0" fontSize="13px">
-                    @{member.handle}
-                  </Text>
-                  <YamadaIcon as={LuArrowUpRight} aria-hidden="true" boxSize="13px" />
-                </Link>
-                <Link
-                  className="detail-handle"
-                  href={`https://github.com/${member.handle}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={`GitHub ${member.handle}`}
-                  display="inline-flex"
-                  alignItems="center"
-                  gap="7px"
-                  color="var(--text)"
-                  fontSize="13px"
-                >
-                  <YamadaIcon as={SiGithub} aria-hidden="true" boxSize="14px" />
-                  <Text as="span" m="0" fontSize="13px">
-                    {member.handle}
-                  </Text>
-                  <YamadaIcon as={LuArrowUpRight} aria-hidden="true" boxSize="13px" />
-                </Link>
-              </HStack>
-              <Text
-                my={{ base: "28px", md: "22px" }}
-                fontSize={{ base: "15px", md: "14px" }}
-                lineHeight="2"
-              >
-                {member.description}
-              </Text>
-              <Heading as="h2" m="0 0 14px" fontSize="14px" fontWeight="700">
-                関心・技術
-              </Heading>
-              <List.Root
-                as="ul"
-                className="skills"
-                styleType="none"
-                display="flex"
-                flexDirection="row"
-                flexWrap="wrap"
-                gap="9px"
-                p="0"
-                m="0"
-                listStyleType="none"
-              >
-                {member.interests.map((interest) => (
-                  <List.Item
-                    as="li"
-                    key={interest}
-                    px="12px"
-                    py="7px"
-                    border="1px solid var(--skill-border)"
-                    bg="var(--skill-bg)"
-                    color="var(--text)"
-                    fontSize="12px"
-                  >
-                    {interest}
-                  </List.Item>
-                ))}
-              </List.Root>
-            </VStack>
-          </Grid>
-        ) : section === "about" ? (
-          <VStack
-            as="article"
-            className="info-view"
-            key={section}
-            align="flex-start"
-            gap="0"
-            maxW="720px"
-            alignSelf={{ base: "center", md: "flex-start" }}
-            px={{ base: "clamp(30px, 8vw, 120px)", md: "22px" }}
-            py={{ base: "80px", md: "55px" }}
-          >
-            <Heading
-              as="h1"
-              m="0"
-              fontFamily="Barlow Condensed, Noto Sans JP, sans-serif"
-              fontSize={{ base: "clamp(48px, 5.6vw, 82px)", md: "clamp(42px, 10vw, 64px)" }}
-              fontWeight="800"
-            >
-              moshi2.dev
-            </Heading>
-            <Text
-              my={{ base: "28px", md: "22px" }}
-              fontSize={{ base: "15px", md: "14px" }}
-              lineHeight="2"
-            >
-              moshi2.devは、ものづくりが好きな技術者のチームです。メンバーそれぞれの興味や技術を持ち寄り、さまざまなことに取り組みます。
-            </Text>
-          </VStack>
-        ) : (
-          <VStack
-            as="article"
-            className="info-view"
-            key={section}
-            align="flex-start"
-            gap="0"
-            maxW="720px"
-            alignSelf={{ base: "center", md: "flex-start" }}
-            px={{ base: "clamp(30px, 8vw, 120px)", md: "22px" }}
-            py={{ base: "80px", md: "55px" }}
-          >
-            <Heading
-              as="h1"
-              m="0"
-              fontFamily="Barlow Condensed, Noto Sans JP, sans-serif"
-              fontSize={{ base: "clamp(48px, 5.6vw, 82px)", md: "clamp(42px, 10vw, 64px)" }}
-              fontWeight="800"
-            >
-              WIP
-            </Heading>
-            <Text
-              my={{ base: "28px", md: "22px" }}
-              fontSize={{ base: "15px", md: "14px" }}
-              lineHeight="2"
-            >
-              作品紹介タブは誠意開発中です。
-            </Text>
-          </VStack>
-        )}
+        <SectionNavigation
+          section={section}
+          memberIndex={memberIndex}
+          onMemberChange={onMemberChange}
+          onSectionChange={onSectionChange}
+        />
+        <SectionContent section={section} member={member} />
       </Grid>
       <Box
         as="footer"
@@ -501,4 +98,16 @@ export function Dashboard({
       </Box>
     </Flex>
   );
+}
+
+function SectionContent({
+  section,
+  member,
+}: {
+  section: Section;
+  member: DashboardProps["member"];
+}) {
+  if (section === "members") return <MemberView member={member} />;
+  if (section === "about") return <AboutView />;
+  return <WorksView />;
 }
