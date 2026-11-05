@@ -19,7 +19,7 @@ export function App({
   const [section, setSection] = useState<"members" | "about" | "experiments">("members");
 
   return (
-    <Box as="main" className="app">
+    <Box as="main" className="app" minH="100svh">
       <Scene theme={theme}>
         <Dashboard
           member={MEMBERS[memberIndex]!}

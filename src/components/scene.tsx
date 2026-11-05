@@ -1,4 +1,5 @@
 import { useEffect, useRef, type ReactNode } from "react";
+import { Box } from "@yamada-ui/react";
 import { usePointerMotion } from "../hooks/use-pointer-motion";
 import SceneWorker from "../workers/scene.worker.ts?worker";
 import type { ColorTheme } from "../hooks/use-theme";
@@ -54,9 +55,17 @@ export function Scene({ children, theme }: { children: ReactNode; theme: ColorTh
   }, [theme]);
 
   return (
-    <div className="scene" ref={sceneRef}>
-      <div className="scene-background" ref={backgroundRef} aria-hidden="true" />
+    <Box className="scene" ref={sceneRef} minH="100svh" position="relative" overflow="hidden">
+      <Box
+        className="scene-background"
+        ref={backgroundRef}
+        aria-hidden="true"
+        position="absolute"
+        inset="0"
+        w="100%"
+        h="100%"
+      />
       {children}
-    </div>
+    </Box>
   );
 }
