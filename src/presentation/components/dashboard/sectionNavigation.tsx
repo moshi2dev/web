@@ -8,6 +8,9 @@ import { LuLayers, LuShapes, LuUsers } from "react-icons/lu";
 import { MEMBERS } from "../../../domain/members";
 import type { Section } from "./types";
 
+let deferredAvatarsActivated = false;
+const loadedAvatarPaths = new Set<string>();
+
 export function SectionNavigation({
   section,
   memberIndex,
@@ -19,8 +22,11 @@ export function SectionNavigation({
   onMemberChange: (index: number) => void;
   onSectionChange: (section: Section) => void;
 }) {
-  const [showDeferredAvatars, setShowDeferredAvatars] = useState(false);
-  const loadDeferredAvatars = () => setShowDeferredAvatars(true);
+  const [showDeferredAvatars, setShowDeferredAvatars] = useState(deferredAvatarsActivated);
+  const loadDeferredAvatars = () => {
+    deferredAvatarsActivated = true;
+    setShowDeferredAvatars(true);
+  };
 
   return (
     <Box
@@ -69,11 +75,14 @@ export function SectionNavigation({
             bg="var(--rail-inset)"
             boxShadow="inset 7px 0 12px var(--rail-shadow), inset 0 5px 10px var(--rail-shadow), inset -1px 0 var(--rail-edge)"
             onPointerEnter={loadDeferredAvatars}
+            onPointerDownCapture={loadDeferredAvatars}
             onFocusCapture={loadDeferredAvatars}
           >
             {MEMBERS.map((item, index) => {
               const shouldLoadAvatar =
                 showDeferredAvatars ||
+                deferredAvatarsActivated ||
+                loadedAvatarPaths.has(item.avatar) ||
                 (section === "members" && memberIndex === index) ||
                 (section !== "members" && index === 0);
 
@@ -107,6 +116,7 @@ export function SectionNavigation({
                       loading="lazy"
                       decoding="async"
                       fetchPriority="low"
+                      onLoad={() => loadedAvatarPaths.add(item.avatar)}
                     />
                   </Button>
                 </List.Item>
