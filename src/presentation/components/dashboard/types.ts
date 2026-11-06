@@ -1,7 +1,7 @@
 import type { ThemePreference } from "../../../application/hooks/useTheme";
 import type { Member } from "../../../domain/members";
 
-export type Section = "members" | "about" | "works";
+export type Section = "about" | "members" | "works";
 
 export type DashboardProps = {
   member: Member;

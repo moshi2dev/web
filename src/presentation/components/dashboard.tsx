@@ -107,7 +107,7 @@ function SectionContent({
   section: Section;
   member: DashboardProps["member"];
 }) {
-  if (section === "members") return <MemberView member={member} />;
   if (section === "about") return <AboutView />;
+  if (section === "members") return <MemberView member={member} />;
   return <WorksView />;
 }
