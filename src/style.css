@@ -158,6 +158,12 @@ button:focus-visible {
   object-fit: cover;
   filter: grayscale(0.5);
 }
+@media (orientation: portrait) {
+  .member-avatar {
+    width: 32px;
+    height: 32px;
+  }
+}
 .member-detail {
   color: var(--text);
   text-shadow: var(--text-shadow);
