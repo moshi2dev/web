@@ -2,7 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { UIProvider } from "@yamada-ui/react/providers/ui-provider";
 import { App } from "./app";
-import { useTheme } from "./application/hooks/useTheme";
+import { ThemeProvider, useThemeContext } from "./application/hooks/useTheme";
 
 const container = document.querySelector("#root");
 
@@ -11,10 +11,19 @@ if (!container) {
 }
 
 function AppRoot() {
-  const { preference, theme, changePreference } = useTheme();
+  return (
+    <ThemeProvider>
+      <ThemedApp />
+    </ThemeProvider>
+  );
+}
+
+function ThemedApp() {
+  const { theme } = useThemeContext();
+
   return (
     <UIProvider colorMode={theme}>
-      <App preference={preference} theme={theme} onThemeChange={changePreference} />
+      <App />
     </UIProvider>
   );
 }

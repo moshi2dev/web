@@ -1,7 +1,23 @@
-import { useEffect, useLayoutEffect, useState } from "react";
+import {
+  createElement,
+  createContext,
+  useContext,
+  useEffect,
+  useLayoutEffect,
+  useState,
+  type ReactNode,
+} from "react";
 
 export type ThemePreference = "light" | "dark" | "system";
 export type ColorTheme = "light" | "dark";
+
+type ThemeContextValue = {
+  preference: ThemePreference;
+  theme: ColorTheme;
+  changePreference: (value: ThemePreference) => void;
+};
+
+const ThemeContext = createContext<ThemeContextValue | null>(null);
 
 const storageKey = "moshi2-theme";
 
@@ -49,4 +65,16 @@ export function useTheme() {
     } catch {}
   };
   return { preference, theme, changePreference };
+}
+
+export function ThemeProvider({ children }: { children: ReactNode }) {
+  const themeState = useTheme();
+
+  return createElement(ThemeContext.Provider, { value: themeState }, children);
+}
+
+export function useThemeContext() {
+  const context = useContext(ThemeContext);
+  if (!context) throw new Error("useThemeContext must be used within ThemeProvider");
+  return context;
 }

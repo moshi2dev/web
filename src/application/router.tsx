@@ -1,6 +1,6 @@
 import {
   Outlet,
-  createRootRouteWithContext,
+  createRootRoute,
   createRoute,
   createRouter,
   useNavigate,
@@ -8,18 +8,12 @@ import {
 import { Box } from "@yamada-ui/react/components/box";
 import { Text } from "@yamada-ui/react/components/text";
 import { MEMBERS } from "../domain/members";
-import type { ColorTheme, ThemePreference } from "./hooks/useTheme";
+import { useThemeContext } from "./hooks/useTheme";
 import { Dashboard } from "../presentation/components/dashboard";
 import { Scene } from "../presentation/components/scene";
 import type { Section } from "../presentation/components/dashboard";
 
-type RouterContext = {
-  preference: ThemePreference;
-  theme: ColorTheme;
-  onThemeChange: (value: ThemePreference) => void;
-};
-
-const rootRoute = createRootRouteWithContext<RouterContext>()({
+const rootRoute = createRootRoute({
   component: RootRoute,
   notFoundComponent: NotFoundRoute,
 });
@@ -46,11 +40,6 @@ const routeTree = rootRoute.addChildren([indexRoute, worksRoute, memberRoute]);
 
 export const router = createRouter({
   routeTree,
-  context: {
-    preference: "system",
-    theme: "dark",
-    onThemeChange: () => undefined,
-  },
   defaultPreload: "intent",
   scrollRestoration: true,
 });
@@ -62,7 +51,7 @@ declare module "@tanstack/react-router" {
 }
 
 function RootRoute() {
-  const { theme } = rootRoute.useRouteContext();
+  const { theme } = useThemeContext();
 
   return (
     <Box as="main" className="app" minH="100svh">
@@ -74,7 +63,7 @@ function RootRoute() {
 }
 
 function DashboardRoute({ section, memberIndex }: { section: Section; memberIndex: number }) {
-  const { preference, onThemeChange } = rootRoute.useRouteContext();
+  const { preference, changePreference } = useThemeContext();
   const navigate = useNavigate();
   const member = MEMBERS[memberIndex]!;
 
@@ -84,7 +73,7 @@ function DashboardRoute({ section, memberIndex }: { section: Section; memberInde
       memberIndex={memberIndex}
       section={section}
       preference={preference}
-      onThemeChange={onThemeChange}
+      onThemeChange={changePreference}
       onMemberChange={(index) => {
         void navigate({
           to: "/members/$handle",
