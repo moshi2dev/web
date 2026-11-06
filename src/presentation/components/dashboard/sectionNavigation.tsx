@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Box } from "@yamada-ui/react/components/box";
 import { Button } from "@yamada-ui/react/components/button";
 import { List } from "@yamada-ui/react/components/list";
@@ -18,6 +19,9 @@ export function SectionNavigation({
   onMemberChange: (index: number) => void;
   onSectionChange: (section: Section) => void;
 }) {
+  const [showDeferredAvatars, setShowDeferredAvatars] = useState(false);
+  const loadDeferredAvatars = () => setShowDeferredAvatars(true);
+
   return (
     <Box
       as="nav"
@@ -64,41 +68,50 @@ export function SectionNavigation({
             listStyleType="none"
             bg="var(--rail-inset)"
             boxShadow="inset 7px 0 12px var(--rail-shadow), inset 0 5px 10px var(--rail-shadow), inset -1px 0 var(--rail-edge)"
+            onPointerEnter={loadDeferredAvatars}
+            onFocusCapture={loadDeferredAvatars}
           >
-            {MEMBERS.map((item, index) => (
-              <List.Item as="li" key={item.handle}>
-                <Button
-                  className="member-button"
-                  variant="ghost"
-                  aria-label={item.name}
-                  title={item.name}
-                  aria-pressed={memberIndex === index && section === "members"}
-                  onClick={() => onMemberChange(index)}
-                  data-magnetic
-                  display="flex"
-                  justifyContent="center"
-                  w="48px"
-                  h="48px"
-                  minW="0"
-                  p="4px"
-                  border="1px solid transparent"
-                  borderRadius="full"
-                  bg="transparent"
-                  color="var(--text)"
-                >
-                  <img
-                    className="member-avatar"
-                    src={item.avatar}
-                    alt=""
-                    width="34"
-                    height="34"
-                    loading={index === 0 ? "eager" : "lazy"}
-                    decoding="async"
-                    fetchPriority={index === 0 ? "high" : "low"}
-                  />
-                </Button>
-              </List.Item>
-            ))}
+            {MEMBERS.map((item, index) => {
+              const shouldLoadAvatar =
+                showDeferredAvatars ||
+                (section === "members" && memberIndex === index) ||
+                (section !== "members" && index === 0);
+
+              return (
+                <List.Item as="li" key={item.handle}>
+                  <Button
+                    className="member-button"
+                    variant="ghost"
+                    aria-label={item.name}
+                    title={item.name}
+                    aria-pressed={memberIndex === index && section === "members"}
+                    onClick={() => onMemberChange(index)}
+                    data-magnetic
+                    display="flex"
+                    justifyContent="center"
+                    w="48px"
+                    h="48px"
+                    minW="0"
+                    p="4px"
+                    border="1px solid transparent"
+                    borderRadius="full"
+                    bg="transparent"
+                    color="var(--text)"
+                  >
+                    <img
+                      className="member-avatar"
+                      src={shouldLoadAvatar ? item.avatar : undefined}
+                      alt=""
+                      width="34"
+                      height="34"
+                      loading="lazy"
+                      decoding="async"
+                      fetchPriority="low"
+                    />
+                  </Button>
+                </List.Item>
+              );
+            })}
           </VStack>
         </List.Item>
         <List.Item as="li">
