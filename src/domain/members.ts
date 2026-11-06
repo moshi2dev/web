@@ -12,9 +12,8 @@ export const MEMBERS: readonly Member[] = [
   {
     name: "mimifuwacc",
     handle: "mimifuwacc",
-    description:
-      "Webアプリケーションの開発を中心に、学祭向けサービスや個人サイトを制作。大学ではアセンブリの形式検証に取り組んでいる。",
-    interests: ["Webアプリケーション", "フロントエンド", "形式検証"],
+    description: "Webアプリケーションの開発を中心に、学祭向けサービスや個人サイトを制作。",
+    interests: ["Webアプリケーション", "形式検証", "ヰ世界情緒"],
     avatar: "/members/mimifuwacc.png",
     personalSite: { href: "https://mimifuwa.cc", domain: "mimifuwa.cc" },
     blog: { path: "/blogs" },
@@ -23,8 +22,8 @@ export const MEMBERS: readonly Member[] = [
     name: "あかあく",
     handle: "AkaakuHub",
     description:
-      "個人開発でWebサービスやブラウザゲームを作り、チームではモバイルオーダーシステムの開発・導入に取り組む。",
-    interests: ["Webサービス", "ブラウザゲーム", "開発ツール"],
+      "個人開発でWebサービスやUnityゲームを作り、チームではモバイルオーダーシステムの開発・導入に取り組む。",
+    interests: ["Webサービス", "ゲーム", "女性声優"],
     avatar: "/members/akaakuhub.jpg",
     personalSite: { href: "https://akaaku.net", domain: "akaaku.net" },
     blog: {},
