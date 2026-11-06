@@ -50,9 +50,9 @@ export function MemberView({ member }: { member: Member }) {
             alt=""
             width="400"
             height="400"
-            loading="eager"
+            loading="lazy"
             decoding="async"
-            fetchPriority="high"
+            fetchPriority="low"
           />
         </Box>
       </Grid>

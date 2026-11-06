@@ -8,8 +8,7 @@ import { LuLayers, LuShapes, LuUsers } from "react-icons/lu";
 import { MEMBERS } from "../../../domain/members";
 import type { Section } from "./types";
 
-let deferredAvatarsActivated = false;
-const loadedAvatarPaths = new Set<string>();
+const loadedMemberAvatarPaths = new Set<string>();
 
 export function SectionNavigation({
   section,
@@ -22,10 +21,15 @@ export function SectionNavigation({
   onMemberChange: (index: number) => void;
   onSectionChange: (section: Section) => void;
 }) {
-  const [showDeferredAvatars, setShowDeferredAvatars] = useState(deferredAvatarsActivated);
-  const loadDeferredAvatars = () => {
-    deferredAvatarsActivated = true;
-    setShowDeferredAvatars(true);
+  const [loadedAvatarPaths, setLoadedAvatarPaths] = useState(
+    () => new Set(loadedMemberAvatarPaths),
+  );
+  const markAvatarLoaded = (path: string) => {
+    loadedMemberAvatarPaths.add(path);
+    setLoadedAvatarPaths((current) => {
+      if (current.has(path)) return current;
+      return new Set(current).add(path);
+    });
   };
 
   return (
@@ -74,17 +78,9 @@ export function SectionNavigation({
             listStyleType="none"
             bg="var(--rail-inset)"
             boxShadow="inset 7px 0 12px var(--rail-shadow), inset 0 5px 10px var(--rail-shadow), inset -1px 0 var(--rail-edge)"
-            onPointerEnter={loadDeferredAvatars}
-            onPointerDownCapture={loadDeferredAvatars}
-            onFocusCapture={loadDeferredAvatars}
           >
             {MEMBERS.map((item, index) => {
-              const shouldLoadAvatar =
-                showDeferredAvatars ||
-                deferredAvatarsActivated ||
-                loadedAvatarPaths.has(item.avatar) ||
-                (section === "members" && memberIndex === index) ||
-                (section !== "members" && index === 0);
+              const isAvatarLoaded = loadedAvatarPaths.has(item.avatar);
 
               return (
                 <List.Item as="li" key={item.handle}>
@@ -107,17 +103,22 @@ export function SectionNavigation({
                     bg="transparent"
                     color="var(--text)"
                   >
-                    <img
-                      className="member-avatar"
-                      src={shouldLoadAvatar ? item.avatar : undefined}
-                      alt=""
-                      width="34"
-                      height="34"
-                      loading="lazy"
-                      decoding="async"
-                      fetchPriority="low"
-                      onLoad={() => loadedAvatarPaths.add(item.avatar)}
-                    />
+                    <span
+                      className={`member-avatar-frame${isAvatarLoaded ? " is-loaded" : ""}`}
+                      aria-hidden="true"
+                    >
+                      <img
+                        className="member-avatar"
+                        src={item.avatar}
+                        alt=""
+                        width="34"
+                        height="34"
+                        loading="lazy"
+                        decoding="async"
+                        fetchPriority="low"
+                        onLoad={() => markAvatarLoaded(item.avatar)}
+                      />
+                    </span>
                   </Button>
                 </List.Item>
               );
