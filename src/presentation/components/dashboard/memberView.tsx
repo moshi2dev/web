@@ -14,18 +14,8 @@ import { LuArrowUpRight, LuHouse, LuNotebookPen } from "react-icons/lu";
 import { SiGithub, SiX } from "react-icons/si";
 import type { Member } from "../../../domain/members";
 
-function getBlogLink(member: Member) {
-  if (!member.personalSite || !member.blog) return null;
-  const { domain } = member.personalSite;
-  const path = member.blog.path ?? "";
-  return {
-    href: path ? `https://${domain}${path}` : `https://blog.${domain}`,
-    label: path ? `${domain}${path}` : `blog.${domain}`,
-  };
-}
-
 export function MemberView({ member }: { member: Member }) {
-  const blogLink = getBlogLink(member);
+  const { site, blog } = member.links ?? {};
 
   return (
     <Grid
@@ -76,13 +66,13 @@ export function MemberView({ member }: { member: Member }) {
           {member.name}
         </Heading>
         <HStack className="member-social-links" gap="16px" mt="13px" flexWrap="wrap">
-          {member.personalSite && (
+          {site && (
             <Link
               className="detail-handle"
-              href={member.personalSite.href}
+              href={`https://${site}`}
               target="_blank"
               rel="noreferrer"
-              aria-label={`個人サイト ${member.personalSite.domain}`}
+              aria-label={`個人サイト ${site}`}
               display="inline-flex"
               alignItems="center"
               gap="7px"
@@ -91,18 +81,18 @@ export function MemberView({ member }: { member: Member }) {
             >
               <YamadaIcon as={LuHouse} aria-hidden="true" boxSize="14px" />
               <Text as="span" m="0" fontSize="13px">
-                {member.personalSite.domain}
+                {site}
               </Text>
               <YamadaIcon as={LuArrowUpRight} aria-hidden="true" boxSize="13px" />
             </Link>
           )}
-          {blogLink && (
+          {blog && (
             <Link
               className="detail-handle"
-              href={blogLink.href}
+              href={`https://${blog}`}
               target="_blank"
               rel="noreferrer"
-              aria-label={`ブログ ${blogLink.label}`}
+              aria-label={`ブログ ${blog}`}
               display="inline-flex"
               alignItems="center"
               gap="7px"
@@ -111,7 +101,7 @@ export function MemberView({ member }: { member: Member }) {
             >
               <YamadaIcon as={LuNotebookPen} aria-hidden="true" boxSize="14px" />
               <Text as="span" m="0" fontSize="13px">
-                {blogLink.label}
+                {blog}
               </Text>
               <YamadaIcon as={LuArrowUpRight} aria-hidden="true" boxSize="13px" />
             </Link>

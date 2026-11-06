@@ -1,11 +1,15 @@
+type MemberLinks = {
+  site?: string;
+  blog?: string;
+};
+
 export type Member = {
   name: string;
   handle: string;
   description: string;
   interests: readonly string[];
   avatar: string;
-  personalSite?: { href: string; domain: string };
-  blog?: { path?: string };
+  links?: MemberLinks;
 };
 
 export const MEMBERS: readonly Member[] = [
@@ -15,8 +19,7 @@ export const MEMBERS: readonly Member[] = [
     description: "Webアプリケーションの開発を中心に、学祭向けサービスや個人サイトを制作。",
     interests: ["Webアプリケーション", "形式検証", "ヰ世界情緒"],
     avatar: "/members/mimifuwacc.png",
-    personalSite: { href: "https://mimifuwa.cc", domain: "mimifuwa.cc" },
-    blog: { path: "/blogs" },
+    links: { site: "mimifuwa.cc", blog: "mimifuwa.cc/blogs" },
   },
   {
     name: "あかあく",
@@ -25,8 +28,7 @@ export const MEMBERS: readonly Member[] = [
       "個人開発でWebサービスやUnityゲームを作り、チームではモバイルオーダーシステムの開発・導入に取り組む。",
     interests: ["Webサービス", "ゲーム", "女性声優"],
     avatar: "/members/akaakuhub.jpg",
-    personalSite: { href: "https://akaaku.net", domain: "akaaku.net" },
-    blog: {},
+    links: { site: "akaaku.net", blog: "blog.akaaku.net" },
   },
   {
     name: "tora",
@@ -43,7 +45,7 @@ export const MEMBERS: readonly Member[] = [
       "フロントエンド・バックエンド・AWSを横断して、学園祭向けサービスや3D Webアプリを開発する。",
     interests: ["フロントエンド", "バックエンド", "AWS"],
     avatar: "/members/keitaitonet.jpg",
-    personalSite: { href: "https://keitaito.net", domain: "keitaito.net" },
+    links: { site: "keitaito.net" },
   },
   {
     name: "Kanaru",
@@ -52,6 +54,6 @@ export const MEMBERS: readonly Member[] = [
       "TypeScriptとReactを中心に、モバイルオーダーや3D Webアプリを開発し、AWSなどのインフラも構築する。",
     interests: ["Webフロントエンド", "クラウドインフラ", "機械学習"],
     avatar: "/members/kanaru0928.jpg",
-    personalSite: { href: "https://www.kanaru.me", domain: "kanaru.me" },
+    links: { site: "kanaru.me", blog: "kanaru.me/articles" },
   },
 ];
