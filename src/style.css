@@ -101,58 +101,18 @@ button:focus-visible {
   color: var(--text);
 }
 .theme-switcher {
-  position: relative;
-  border: 1px solid var(--border);
-  background: var(--panel);
-  color: var(--text);
-}
-.theme-switcher::before {
-  content: "";
-  position: absolute;
-  left: 4px;
-  top: 4px;
-  bottom: 4px;
-  width: 40px;
-  background: var(--text);
+  flex: none;
   transition:
-    transform 300ms cubic-bezier(0.2, 0.8, 0.2, 1),
-    background-color 0.2s ease;
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
-.theme-switcher[data-value="dark"]::before {
-  transform: translateX(40px);
-}
-.theme-switcher[data-value="system"]::before {
-  transform: translateX(80px);
-}
-.theme-option {
-  position: relative;
-  z-index: 1;
-  cursor: pointer;
-  transition: color 0.2s ease;
-}
-.theme-option input {
-  position: absolute;
-  opacity: 0;
-  width: 1px;
-  height: 1px;
-}
-.theme-option svg {
+.theme-switcher svg {
   transition: transform 0.2s ease;
 }
-.theme-option:has(input:checked) {
-  color: var(--control-selected-text);
+.theme-switcher:hover {
+  background: var(--nav-hover) !important;
 }
-.theme-option:has(input:focus-visible) {
-  outline: 2px solid var(--accent-ink);
-  outline-offset: 2px;
-}
-.theme-option:hover {
-  color: var(--text);
-}
-.theme-option:has(input:checked):hover {
-  color: var(--control-selected-text);
-}
-.theme-option:hover svg {
+.theme-switcher:hover svg {
   transform: translateY(-2px);
 }
 .member-button:hover {

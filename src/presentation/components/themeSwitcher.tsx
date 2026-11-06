@@ -1,6 +1,5 @@
 import { LuMonitor, LuMoon, LuSun } from "react-icons/lu";
-import { Box } from "@yamada-ui/react/components/box";
-import { VisuallyHidden } from "@yamada-ui/react/components/visually-hidden";
+import { Button } from "@yamada-ui/react/components/button";
 import type { ThemePreference } from "../../application/hooks/useTheme";
 
 const options = [
@@ -16,39 +15,33 @@ export function ThemeSwitcher({
   value: ThemePreference;
   onChange: (value: ThemePreference) => void;
 }) {
+  const currentOption = options.find((option) => option.value === value) ?? options[0];
+  const currentIndex = options.findIndex((option) => option.value === value);
+  const nextOption = options[(currentIndex + 1) % options.length];
+
   return (
-    <Box
-      as="fieldset"
+    <Button
       className="theme-switcher"
-      data-value={value}
-      display="grid"
-      gridTemplateColumns="repeat(3, 40px)"
-      p="4px"
+      variant="ghost"
+      type="button"
+      aria-label={`表示テーマ: ${currentOption.label}`}
+      title={`表示テーマ: ${currentOption.label}（クリックで${nextOption.label}）`}
+      onClick={() => onChange(nextOption.value)}
+      data-magnetic
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      w="40px"
+      h="40px"
+      minW="40px"
+      p="0"
       m="0 0 0 auto"
+      border="1px solid var(--border)"
+      borderRadius="md"
+      bg="var(--panel)"
+      color="var(--text)"
     >
-      <VisuallyHidden as="legend">表示テーマ</VisuallyHidden>
-      {options.map(({ value: option, label, Icon }) => (
-        <Box
-          as="label"
-          className="theme-option"
-          key={option}
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-          w="40px"
-          h="40px"
-        >
-          <input
-            type="radio"
-            name="theme"
-            aria-label={label}
-            value={option}
-            checked={value === option}
-            onChange={() => onChange(option)}
-          />
-          <Icon aria-hidden="true" size={17} />
-        </Box>
-      ))}
-    </Box>
+      <currentOption.Icon aria-hidden="true" size={17} />
+    </Button>
   );
 }
