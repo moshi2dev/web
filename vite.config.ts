@@ -2,6 +2,8 @@ import { COLOR_MODE_STORAGE_KEY, getStorageScript } from "@yamada-ui/react/core"
 import type { Plugin } from "vite-plus";
 import { defineConfig } from "vite-plus";
 
+import { cloudflare } from "@cloudflare/vite-plugin";
+
 /**
  * カラーモードの同期スクリプトを `<body>` 直後に注入する。
  * これがないとページ読み込み時にカラーモードが一瞬チラつく(FOUC)。
@@ -24,7 +26,7 @@ function injectColorModeScript(): Plugin {
 }
 
 export default defineConfig({
-  plugins: [injectColorModeScript()],
+  plugins: [injectColorModeScript(), cloudflare()],
   build: {
     rolldownOptions: {
       output: {
