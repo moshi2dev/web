@@ -10,6 +10,7 @@
   --accent: #efff30;
   --accent-ink: #efff30;
   --accent-text: #20231b;
+  --control-selected-text: #25282a;
   --border: #ffffff32;
   --panel: #171b1dd9;
   --sidebar-panel: #252c2ee8;
@@ -36,6 +37,7 @@
   --accent: #d5e928;
   --accent-ink: #526500;
   --accent-text: #20251a;
+  --control-selected-text: #ecece5;
   --border: #1b242035;
   --panel: #f6f7efdb;
   --sidebar-panel: var(--panel);
@@ -95,11 +97,16 @@ button:focus-visible {
 }
 .dashboard-header {
   border-bottom: 1px solid var(--border);
+  color: var(--text);
+}
+.dashboard-header a {
+  color: var(--text);
 }
 .theme-switcher {
   position: relative;
   border: 1px solid var(--border);
   background: var(--panel);
+  color: var(--text);
 }
 .theme-switcher::before {
   content: "";
@@ -135,7 +142,7 @@ button:focus-visible {
   transition: transform 0.2s ease;
 }
 .theme-option:has(input:checked) {
-  color: var(--page-bg);
+  color: var(--control-selected-text);
 }
 .theme-option:has(input:focus-visible) {
   outline: 2px solid var(--accent-ink);
@@ -145,7 +152,7 @@ button:focus-visible {
   color: var(--text);
 }
 .theme-option:has(input:checked):hover {
-  color: var(--page-bg);
+  color: var(--control-selected-text);
 }
 .theme-option:hover svg {
   transform: translateY(-2px);
