@@ -12,8 +12,9 @@ export const MEMBERS: readonly Member[] = [
   {
     name: "mimifuwacc",
     handle: "mimifuwacc",
-    description: "Webアプリケーションエンジニア。アセンブリの形式検証にも取り組む。",
-    interests: ["Web", "形式検証", "TypeScript"],
+    description:
+      "Webアプリケーションの開発を中心に、学祭向けサービスや個人サイトを制作。大学ではアセンブリの形式検証に取り組んでいる。",
+    interests: ["Webアプリケーション", "フロントエンド", "形式検証"],
     avatar: "/members/mimifuwacc.png",
     personalSite: { href: "https://mimifuwa.cc", domain: "mimifuwa.cc" },
     blog: { path: "/blogs" },
@@ -21,8 +22,9 @@ export const MEMBERS: readonly Member[] = [
   {
     name: "あかあく",
     handle: "AkaakuHub",
-    description: "Webサイトやモバイルオーダーシステムなどを手がけるエンジニア。",
-    interests: ["Web", "プロダクト開発", "セキュリティ"],
+    description:
+      "個人開発でWebサービスやブラウザゲームを作り、チームではモバイルオーダーシステムの開発・導入に取り組む。",
+    interests: ["Webサービス", "ブラウザゲーム", "開発ツール"],
     avatar: "/members/akaakuhub.jpg",
     personalSite: { href: "https://akaaku.net", domain: "akaaku.net" },
     blog: {},
@@ -30,23 +32,26 @@ export const MEMBERS: readonly Member[] = [
   {
     name: "tora",
     handle: "t0ratiger",
-    description: "プログラミング言語とWebに取り組む。GitHubでも開発を公開中。",
-    interests: ["プログラミング言語", "Web"],
+    description:
+      "Webアプリケーションやリアルタイム通信を開発し、Rust・Go・Cでインタプリタやサーバーも実装する。",
+    interests: ["リアルタイム通信", "プログラミング言語", "Webバックエンド"],
     avatar: "/members/t0ratiger.jpg",
   },
   {
     name: "Keita Ito",
     handle: "keitaitonet",
-    description: "フロントエンドからバックエンド、クラウドインフラまで手がける。",
-    interests: ["フルスタック", "クラウド", "自宅サーバー"],
+    description:
+      "フロントエンド・バックエンド・AWSを横断して、学園祭向けサービスや3D Webアプリを開発する。",
+    interests: ["フロントエンド", "バックエンド", "AWS"],
     avatar: "/members/keitaitonet.jpg",
     personalSite: { href: "https://keitaito.net", domain: "keitaito.net" },
   },
   {
     name: "Kanaru",
     handle: "kanaru0928",
-    description: "Web開発からインフラ構築まで。モバイルオーダーや個人開発にも取り組む。",
-    interests: ["TypeScript", "React", "インフラ"],
+    description:
+      "TypeScriptとReactを中心に、モバイルオーダーや3D Webアプリを開発し、AWSなどのインフラも構築する。",
+    interests: ["Webフロントエンド", "クラウドインフラ", "機械学習"],
     avatar: "/members/kanaru0928.jpg",
     personalSite: { href: "https://www.kanaru.me", domain: "kanaru.me" },
   },
