@@ -50,8 +50,7 @@ export function MemberView({ member }: { member: Member }) {
         className="portrait-stage"
         aria-hidden="true"
         placeItems="center"
-        p={{ base: "45px 22px", lg: "25px 15px", md: "18px 12px" }}
-        overflow="hidden"
+        p={{ base: "45px 45px", lg: "25px 15px", md: "18px 12px" }}
         isolation="isolate"
       >
         <Box
