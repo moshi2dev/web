@@ -1,4 +1,6 @@
-import { Heading, Text, VStack } from "@yamada-ui/react";
+import { Heading } from "@yamada-ui/react/components/heading";
+import { Text } from "@yamada-ui/react/components/text";
+import { VStack } from "@yamada-ui/react/components/stack";
 
 export function InfoView({ title, children }: { title: string; children: string }) {
   return (

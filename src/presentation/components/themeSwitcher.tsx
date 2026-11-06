@@ -1,5 +1,6 @@
 import { LuMonitor, LuMoon, LuSun } from "react-icons/lu";
-import { Box, Icon as YamadaIcon, VisuallyHidden } from "@yamada-ui/react";
+import { Box } from "@yamada-ui/react/components/box";
+import { VisuallyHidden } from "@yamada-ui/react/components/visually-hidden";
 import type { ThemePreference } from "../../application/hooks/useTheme";
 
 const options = [
@@ -45,7 +46,7 @@ export function ThemeSwitcher({
             checked={value === option}
             onChange={() => onChange(option)}
           />
-          <YamadaIcon as={Icon} aria-hidden="true" boxSize="17px" />
+          <Icon aria-hidden="true" size={17} />
         </Box>
       ))}
     </Box>

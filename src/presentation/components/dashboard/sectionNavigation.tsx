@@ -1,12 +1,8 @@
-import {
-  Box,
-  Button,
-  Image,
-  List,
-  Icon as YamadaIcon,
-  VisuallyHidden,
-  VStack,
-} from "@yamada-ui/react";
+import { Box } from "@yamada-ui/react/components/box";
+import { Button } from "@yamada-ui/react/components/button";
+import { List } from "@yamada-ui/react/components/list";
+import { VStack } from "@yamada-ui/react/components/stack";
+import { VisuallyHidden } from "@yamada-ui/react/components/visually-hidden";
 import { LuLayers, LuShapes, LuUsers } from "react-icons/lu";
 import { MEMBERS } from "../../../domain/members";
 import type { Section } from "./types";
@@ -90,14 +86,15 @@ export function SectionNavigation({
                   bg="transparent"
                   color="var(--text)"
                 >
-                  <Image
+                  <img
+                    className="member-avatar"
                     src={item.avatar}
                     alt=""
-                    fit="cover"
-                    w="34px"
-                    h="34px"
-                    borderRadius="full"
-                    filter="grayscale(.5)"
+                    width="34"
+                    height="34"
+                    loading={index === 0 ? "eager" : "lazy"}
+                    decoding="async"
+                    fetchPriority={index === 0 ? "high" : "low"}
                   />
                 </Button>
               </List.Item>
@@ -119,7 +116,7 @@ export function SectionNavigation({
 
 function NavButton({
   title,
-  icon,
+  icon: Icon,
   active,
   onClick,
 }: {
@@ -149,7 +146,7 @@ function NavButton({
       fontSize="13px"
       fontWeight="700"
     >
-      <YamadaIcon as={icon} aria-hidden="true" boxSize="18px" />
+      <Icon aria-hidden="true" size={18} />
       <VisuallyHidden as="span">{title}</VisuallyHidden>
     </Button>
   );

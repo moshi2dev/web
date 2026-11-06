@@ -1,12 +1,20 @@
-import { Box, Flex, Grid, Link, Text, Icon as YamadaIcon } from "@yamada-ui/react";
+import { lazy, Suspense } from "react";
+import { Box } from "@yamada-ui/react/components/box";
+import { Flex } from "@yamada-ui/react/components/flex";
+import { Grid } from "@yamada-ui/react/components/grid";
+import { Link } from "@yamada-ui/react/components/link";
+import { Text } from "@yamada-ui/react/components/text";
 import { LuArrowUpRight } from "react-icons/lu";
 import { SiGithub } from "react-icons/si";
 import { ThemeSwitcher } from "./themeSwitcher";
 import { AboutView } from "./dashboard/aboutView";
-import { MemberView } from "./dashboard/memberView";
 import { SectionNavigation } from "./dashboard/sectionNavigation";
 import type { DashboardProps, Section } from "./dashboard/types";
 import { WorksView } from "./dashboard/worksView";
+
+const LazyMemberView = lazy(() =>
+  import("./dashboard/memberView").then(({ MemberView }) => ({ default: MemberView })),
+);
 
 export type { Section } from "./dashboard/types";
 
@@ -63,11 +71,11 @@ export function Dashboard({
           py="10px"
           fontSize="13px"
         >
-          <YamadaIcon as={SiGithub} aria-hidden="true" boxSize="18px" />
+          <SiGithub aria-hidden="true" size={18} />
           <Text as="span" m="0" fontSize="13px">
             GitHub
           </Text>
-          <YamadaIcon as={LuArrowUpRight} aria-hidden="true" boxSize="13px" />
+          <LuArrowUpRight aria-hidden="true" size={13} />
         </Link>
       </Flex>
       <Grid
@@ -108,6 +116,12 @@ function SectionContent({
   member: DashboardProps["member"];
 }) {
   if (section === "about") return <AboutView />;
-  if (section === "members") return <MemberView member={member} />;
+  if (section === "members") {
+    return (
+      <Suspense fallback={null}>
+        <LazyMemberView member={member} />
+      </Suspense>
+    );
+  }
   return <WorksView />;
 }

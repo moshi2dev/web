@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap");
-
 :root {
   color-scheme: dark;
   font-family: "Noto Sans JP", sans-serif;
@@ -187,6 +185,18 @@ button:focus-visible {
 .portrait-frame {
   background: #4c5150;
   box-shadow: 0 20px 50px #12171980;
+}
+.portrait-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.member-avatar {
+  display: block;
+  border-radius: 50%;
+  object-fit: cover;
+  filter: grayscale(0.5);
 }
 .member-detail {
   color: var(--text);

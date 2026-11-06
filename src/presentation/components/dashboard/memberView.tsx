@@ -1,15 +1,10 @@
-import {
-  Box,
-  Grid,
-  Heading,
-  HStack,
-  Image,
-  Link,
-  List,
-  Text,
-  VStack,
-  Icon as YamadaIcon,
-} from "@yamada-ui/react";
+import { HStack, VStack } from "@yamada-ui/react/components/stack";
+import { Box } from "@yamada-ui/react/components/box";
+import { Grid } from "@yamada-ui/react/components/grid";
+import { Heading } from "@yamada-ui/react/components/heading";
+import { Link } from "@yamada-ui/react/components/link";
+import { List } from "@yamada-ui/react/components/list";
+import { Text } from "@yamada-ui/react/components/text";
 import { LuArrowUpRight, LuHouse, LuNotebookPen } from "react-icons/lu";
 import { SiGithub, SiX } from "react-icons/si";
 import type { Member } from "../../../domain/members";
@@ -49,7 +44,16 @@ export function MemberView({ member }: { member: Member }) {
           w={{ base: "min(100%, 430px)", md: "min(100%, 300px)" }}
           aspectRatio="1"
         >
-          <Image src={member.avatar} alt="" fit="cover" w="100%" h="100%" />
+          <img
+            className="portrait-image"
+            src={member.avatar}
+            alt=""
+            width="400"
+            height="400"
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
+          />
         </Box>
       </Grid>
       <VStack className="member-detail" align="flex-start" gap="0" maxW="540px">
@@ -79,11 +83,11 @@ export function MemberView({ member }: { member: Member }) {
               color="var(--text)"
               fontSize="13px"
             >
-              <YamadaIcon as={LuHouse} aria-hidden="true" boxSize="14px" />
+              <LuHouse aria-hidden="true" size={14} />
               <Text as="span" m="0" fontSize="13px">
                 {site}
               </Text>
-              <YamadaIcon as={LuArrowUpRight} aria-hidden="true" boxSize="13px" />
+              <LuArrowUpRight aria-hidden="true" size={13} />
             </Link>
           )}
           {blog && (
@@ -99,11 +103,11 @@ export function MemberView({ member }: { member: Member }) {
               color="var(--text)"
               fontSize="13px"
             >
-              <YamadaIcon as={LuNotebookPen} aria-hidden="true" boxSize="14px" />
+              <LuNotebookPen aria-hidden="true" size={14} />
               <Text as="span" m="0" fontSize="13px">
                 {blog}
               </Text>
-              <YamadaIcon as={LuArrowUpRight} aria-hidden="true" boxSize="13px" />
+              <LuArrowUpRight aria-hidden="true" size={13} />
             </Link>
           )}
           <Link
@@ -118,11 +122,11 @@ export function MemberView({ member }: { member: Member }) {
             color="var(--text)"
             fontSize="13px"
           >
-            <YamadaIcon as={SiX} aria-hidden="true" boxSize="13px" />
+            <SiX aria-hidden="true" size={13} />
             <Text as="span" m="0" fontSize="13px">
               @{member.handle}
             </Text>
-            <YamadaIcon as={LuArrowUpRight} aria-hidden="true" boxSize="13px" />
+            <LuArrowUpRight aria-hidden="true" size={13} />
           </Link>
           <Link
             className="detail-handle"
@@ -136,11 +140,11 @@ export function MemberView({ member }: { member: Member }) {
             color="var(--text)"
             fontSize="13px"
           >
-            <YamadaIcon as={SiGithub} aria-hidden="true" boxSize="14px" />
+            <SiGithub aria-hidden="true" size={14} />
             <Text as="span" m="0" fontSize="13px">
               {member.handle}
             </Text>
-            <YamadaIcon as={LuArrowUpRight} aria-hidden="true" boxSize="13px" />
+            <LuArrowUpRight aria-hidden="true" size={13} />
           </Link>
         </HStack>
         <Text

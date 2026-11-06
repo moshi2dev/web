@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box } from "@yamada-ui/react";
+import { Box } from "@yamada-ui/react/components/box";
 import { Scene } from "./presentation/components/scene";
 import { Dashboard } from "./presentation/components/dashboard";
 import type { Section } from "./presentation/components/dashboard";
